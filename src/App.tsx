@@ -1,44 +1,34 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState, useEffect } from "react";
 import Card, { CardVariant } from "./components/Card";
-import UserList from "./components/UserList";
+
+import { IUser, ITodo } from "./types/types";
+import axios from "axios";
+
+import List from "./components/List";
+import TodoItem from "./components/TodoItem";
+import EventsExample from "./components/EventsExample";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UserPage from "./components/UserPage";
+import TodosPage from "./components/TodosPage";
+import { Link } from "react-router-dom";
+import UserItemPage from "./components/UserItemPage";
+// import TodoItemPage from "./components/TodoItemPage";
 
 function App() {
-  const users = [
-    {
-      id: 1,
-      name: "Maris",
-      email: "sss@mail.com",
-      address: {
-        city: "Daugavpils",
-        street: "18.novembra",
-        zipcode: "LV12321",
-      },
-    },
-    {
-      id: 2,
-      name: "Dantes",
-      email: "ddd@mail.com",
-      address: {
-        city: "Daugavpils",
-        street: "Tautas",
-        zipcode: "LV12321",
-      },
-    },
-  ];
-  return (
-    <div className="App">
-      <Card
-        onClick={(num) => console.log("click", num)}
-        variant={CardVariant.outlined}
-        width="200px"
-        height="200px"
-      >
-        <button>Button</button>
-      </Card>
-      <UserList users={users} />
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<div>
+				<Link to="/users">Users</Link>
+				<Link to="/todos">To do</Link>
+			</div>
+			<Routes>
+				<Route path="/users" element={<UserPage />}></Route>
+				<Route path="/users/:id" element={<UserItemPage />}></Route>
+				<Route path="/todos" element={<TodosPage />}></Route>
+				{/* <Route path="/todos/:id" element={<TodoItemPage />}></Route> */}
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
