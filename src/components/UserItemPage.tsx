@@ -7,10 +7,11 @@ type UserItemPageParams = {
 	id: string;
 };
 
-const UserItemPage: FC = () => {
+const UserItemPage = () => {
 	const [user, setUser] = useState<IUser | null>(null);
 	const params = useParams<UserItemPageParams>();
 	const navigate = useNavigate();
+	console.log(params.id);
 
 	useEffect(() => {
 		fetchUser();
@@ -26,6 +27,7 @@ const UserItemPage: FC = () => {
 			alert(e);
 		}
 	}
+
 	return (
 		<div>
 			<button onClick={() => navigate("/users")}>Back</button>

@@ -29,7 +29,10 @@ const UserPage: FC = () => {
 				items={users}
 				renderItem={(user: IUser) => (
 					<UserItem
-						onClick={() => navigate("/users/ " + user.id)}
+						onClick={(user) => {
+							navigate("/users/" + user.id);
+							console.log(user.id);
+						}}
 						user={user}
 						key={user.id}
 					/>
